@@ -21,13 +21,16 @@ RUN apt-get update && \
     libnss3 \
     libxss1 \
     libasound2 \
-    xvfb
+    xvfb \
+    jq \
+ && rm -rf /var/lib/apt/lists/*
 
 # versions of local tools
 RUN node -v
 # NPM version should already be pretty new (> 6.4.0)
 RUN npm -v
 # END
+
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
