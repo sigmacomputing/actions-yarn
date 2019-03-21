@@ -15,4 +15,4 @@ else
   echo "NPM_AUTH_TOKEN is not set"
 fi
 
-sh -c "yarn $*"
+NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN}" sh -c "yarn $*"
