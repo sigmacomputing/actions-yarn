@@ -97,6 +97,7 @@ RUN apt-get update && \
     libasound2 \
     xvfb \
     jq \
+    git \
  && rm -rf /var/lib/apt/lists/*
 
 # versions of local tools
