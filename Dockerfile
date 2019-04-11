@@ -1,10 +1,15 @@
 # NOTE(don): this is a bit of a frankenstein, combining the mysql:5.7 Dockerfile
 # with the node:10.15.3-stretch-slim Dockerfile. They both have the same base,
-# so this should work
+# so this seems fine
 # https://github.com/docker-library/mysql/blob/bb7ea52db4e12d3fb526450d22382d5cd8cd41ca/5.7/Dockerfile
 FROM mysql:5.7.25
 
-### BEGIN: add bits from node:10.15.3-stretch-slim 
+# save the mysql command wrapper from the mysql package
+RUN cp \
+    /usr/local/bin/docker-entrypoint.sh \
+    /usr/local/bin/mysql-wrapper-for-docker.sh
+
+### BEGIN: add bits from node:10.15.3-stretch-slim
 # https://github.com/nodejs/docker-node/blob/170ed2092d4925971f9cd3ad5dfc416e820f90fd/10/stretch-slim/Dockerfile
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
@@ -69,7 +74,7 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
-### END: add bits from node:10.15.3-stretch-slim 
+### END: add bits from node:10.15.3-stretch-slim
 
 LABEL version="1.1.0"
 LABEL repository="https://github.com/nuxt/actions-yarn"

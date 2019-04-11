@@ -9,8 +9,4 @@ else
   echo "NPM_AUTH_TOKEN is not set"
 fi
 
-# startup mysql daemon
-mysqld &
-
-# just run whatever command was passed in
-sh -c "$*"
+exec "$@"
