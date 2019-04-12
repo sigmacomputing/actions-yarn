@@ -9,4 +9,4 @@ else
   echo "NPM_AUTH_TOKEN is not set"
 fi
 
-sh -c "yarn $*"
+exec "$@"
