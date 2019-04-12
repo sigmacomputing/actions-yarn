@@ -93,7 +93,7 @@ RUN yarn config set unsafe-perm true
 # Taken from https://github.com/cypress-io/cypress-docker-images/blob/15c5bf875454a289e20587b192c4e4322787956c/base/10/Dockerfile#L3
 # BEGIN
 RUN apt-get update && \
-  apt-get install -y \
+  apt-get install --no-install-recommends -y \
     libgtk2.0-0 \
     libnotify-dev \
     libgconf-2-4 \
