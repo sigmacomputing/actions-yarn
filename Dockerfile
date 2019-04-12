@@ -114,4 +114,4 @@ RUN npm -v
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["yarn", "help"]
+CMD "yarn help"
