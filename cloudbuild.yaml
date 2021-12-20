@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--tag', 'gcr.io/$PROJECT_ID/actions-yarn:${COMMIT_SHA}',
+    '--label', 'branch=${BRANCH_NAME}',
+    '--build-arg', 'VERSION=${COMMIT_SHA}',
+    '.'
+  ]
